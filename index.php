@@ -7,7 +7,13 @@ $url = 'https://www.sainsburys.co.uk/webapp/wcs/stores/servlet/CategoryDisplay?l
 $data = getXml($url);
 $json = htmlToJson($data);
 
-var_dump($json);
-exit($json);
+if (isset($argv[1])){
+    $fp = fopen('test/'.$argv[1], 'w');
+    fwrite($fp,$json);
+    fclose($fp);
+} else {
+    var_dump($json);
+}
+exit;
 
 ?>
